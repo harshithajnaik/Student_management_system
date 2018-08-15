@@ -10,16 +10,20 @@ if(strlen($_SESSION['alogin'])=="")
 if(isset($_POST['submit']))
 {
 $classname=$_POST['classname'];
-$classnamenumeric=$_POST['classnamenumeric']; 
 $section=$_POST['section'];
-$sql="INSERT INTO  tblclasses(ClassName,ClassNameNumeric,Section) VALUES(:classname,:classnamenumeric,:section)";
+$batch=$_POST['batch'];
+$academic_year=$_POST['academic_year'];
+$action=$_POST['action'];
+$sql="INSERT INTO  class(class_name,section,batch,academic_year,action) VALUES(:classname,:section,:batch,:academic_year,:action)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':classname',$classname,PDO::PARAM_STR);
-$query->bindParam(':classnamenumeric',$classnamenumeric,PDO::PARAM_STR);
 $query->bindParam(':section',$section,PDO::PARAM_STR);
-$query->execute();
+$query->bindParam(':batch',$batch,PDO::PARAM_STR);
+$query->bindParam(':academic_year',$academic_year,PDO::PARAM_STR);
+$query->bindParam(':action',$action,PDO::PARAM_STR);
+//$query->execute();
 $lastInsertId = $dbh->lastInsertId();
-if($lastInsertId)
+if($query->execute())
 {
 $msg="Class Created successfully";
 }
@@ -136,10 +140,10 @@ else if($error){?>
                                                 		</div>
                                                 	</div>
                                                        <div class="form-group has-success">
-                                                        <label for="success" class="control-label">Class Name in Numeric</label>
+                                                        <label for="success" class="control-label">Class Batch</label>
                                                         <div class="">
-                                                            <input type="number" name="classnamenumeric" required="required" class="form-control" id="success">
-                                                            <span class="help-block">Eg- 1,2,4,5 etc</span>
+                                                            <input type="text" name="batch" required="required" class="form-control" id="success">
+                                                            <span class="help-block">Eg- 2018-19, 2019-20 etc</span>
                                                         </div>
                                                     </div>
                                                      <div class="form-group has-success">
@@ -147,6 +151,20 @@ else if($error){?>
                                                         <div class="">
                                                             <input type="text" name="section" class="form-control" required="required" id="success">
                                                             <span class="help-block">Eg- A,B,C etc</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group has-success">
+                                                        <label for="success" class="control-label">Academic Year</label>
+                                                        <div class="">
+                                                            <input type="text" name="academic_year" class="form-control" required="required" id="success">
+                                                            <span class="help-block">Eg. 2018, 2019</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group has-success">
+                                                        <label for="success" class="control-label">Action</label>
+                                                        <div class="">
+                                                            <input type="text" name="action" class="form-control" required="required" id="success">
+                                                            <span class="help-block">Eg. Active,Blocked</span>
                                                         </div>
                                                     </div>
   <div class="form-group has-success">

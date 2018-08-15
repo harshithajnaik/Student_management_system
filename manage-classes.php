@@ -108,9 +108,11 @@ else if($error){?>
                                                         <tr>
                                                             <th>#</th>
                                                             <th>Class Name</th>
-                                                            <th>Class Name Numeric</th>
+                                                           <!-- <th>Class Name Numeric</th> -->
                                                             <th>Section</th>
-                                                            <th>Creation Date</th>
+                                                           <!-- <th>Creation Date</th>-->
+                                                           <th>Batch</th>
+                                                           <th>Academic year</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -118,14 +120,16 @@ else if($error){?>
                                                         <tr>
                                                           <th>#</th>
                                                             <th>Class Name</th>
-                                                            <th>Class Name Numeric</th>
-                                                            <th>Section</th>
-                                                            <th>Creation Date</th>
+                                                           <!-- <th>Class Name Numeric</th>-->
+                                                          <th>Section</th>
+                                                            <th>Batch</th>
+                                                           <th>Academic year</th>
+                                                           
                                                             <th>Action</th>
                                                         </tr>
                                                     </tfoot>
                                                     <tbody>
-<?php $sql = "SELECT * from tblclasses";
+<?php $sql = "SELECT * from class";
 $query = $dbh->prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -136,12 +140,13 @@ foreach($results as $result)
 {   ?>
 <tr>
  <td><?php echo htmlentities($cnt);?></td>
-                                                            <td><?php echo htmlentities($result->ClassName);?></td>
-                                                            <td><?php echo htmlentities($result->ClassNameNumeric);?></td>
-                                                            <td><?php echo htmlentities($result->Section);?></td>
-                                                            <td><?php echo htmlentities($result->CreationDate);?></td>
+                                                            <td><?php echo htmlentities($result->class_name);?></td>
+                                                            <td><?php echo htmlentities($result->section);?></td>
+                                                            <td><?php echo htmlentities($result->batch);?></td>
+                                                            <td><?php echo htmlentities($result->academic_year);?></td>
+                                                            <td><?php echo htmlentities($result->action);?></td>
 <td>
-<a href="edit-class.php?classid=<?php echo htmlentities($result->id);?>"><i class="fa fa-edit" title="Edit Record"></i> </a> 
+<a href="edit-class.php?classid=<?php echo htmlentities($result->class_id);?>"><i class="fa fa-edit" title="Edit Record"></i> </a> 
 
 </td>
 </tr>
