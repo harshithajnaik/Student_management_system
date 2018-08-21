@@ -111,13 +111,13 @@ foreach($results as $result)
                                                     <div class="form-group">
                                                         <label for="default" class="col-sm-2 control-label">Subject Name</label>
                                                         <div class="col-sm-10">
- <input type="text" name="subjectname" value="<?php echo htmlentities($result->SubjectName);?>" class="form-control" id="default" placeholder="Subject Name" required="required">
+ <input type="text" name="subjectname" value="<?php echo htmlentities($result->sub_name);?>" class="form-control" id="default"  required="required">
                                                         </div>
                                                     </div>
 <div class="form-group">
                                                         <label for="default" class="col-sm-2 control-label">Subject Code</label>
                                                         <div class="col-sm-10">
- <input type="text" name="subjectcode" class="form-control" value="<?php echo htmlentities($result->SubjectCode);?>"  id="default" placeholder="Subject Code" required="required">
+ <input type="text" name="subjectcode" class="form-control" value="<?php echo htmlentities($result->sub_code);?>"  id="default"  required="required">
                                                         </div>
                                                     </div>
                                                     <?php }} ?>

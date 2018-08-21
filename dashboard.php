@@ -8,6 +8,24 @@ if(strlen($_SESSION['alogin'])=="")
     }
     else{
         ?>
+<style>
+        body, html {
+    height: 100%;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("images/background.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +33,7 @@ if(strlen($_SESSION['alogin'])=="")
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Student Result Management System | Dashboard</title>
+        <title>Silicon City Academy| Dashboard</title>
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
         <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
         <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen" >
@@ -27,7 +45,7 @@ if(strlen($_SESSION['alogin'])=="")
         <link rel="stylesheet" href="css/main.css" media="screen" >
         <script src="js/modernizr/modernizr.min.js"></script>
     </head>
-    <body class="top-navbar-fixed">
+    <body class="top-navbar-fixed bg" >
         <div class="main-wrapper">
               <?php include('includes/topbar.php');?>
             <div class="content-wrapper">
@@ -193,7 +211,7 @@ $totalresults=$query3->rowCount();
                   "showMethod": "fadeIn",
                   "hideMethod": "fadeOut"
                 }
-                toastr["success"]( "Welcome to student Result Management System!");
+                toastr["success"]( "Welcome to Silicon City Academy of Secondary Education!");
 
             });
         </script>

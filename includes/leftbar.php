@@ -46,6 +46,15 @@
                                         </ul>
                                     </li>
 <li class="has-children">
+                                   
+                                        <a href="#"><i class="fa fa-file-text"></i> <span>Fee Management</span> <i class="fa fa-angle-right arrow"></i></a>
+                                        <ul class="child-nav">
+                                            <li><a href="pay-fee.php"><i class="fa fa-bars"></i> <span>Pay Fees</span></a></li>
+                                            <!--<li><a href="manage-classes.php"><i class="fa fa fa-server"></i> <span>Manage Classes</span></a></li>
+                                           -->
+                                        </ul>
+                                    </li>
+                                    <li class="has-children">
                                         <a href="#"><i class="fa fa-info-circle"></i> <span>Result</span> <i class="fa fa-angle-right arrow"></i></a>
                                         <ul class="child-nav">
                                             <li><a href="add-result.php"><i class="fa fa-bars"></i> <span>Add Result</span></a></li>
