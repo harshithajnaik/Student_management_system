@@ -112,6 +112,7 @@ INSERT INTO `subject1` (`sub_code`, `sub_name`, `sub_order`, `status`, `creation
 -- Table structure for table `s_idstudents`
 --
 
+DROP TABLE IF EXISTS `s_idstudents`;
 CREATE TABLE IF NOT EXISTS `s_idstudents` (
   `s_id` int(5) NOT NULL AUTO_INCREMENT,
   `s_first_name` varchar(25) NOT NULL,
@@ -141,6 +142,7 @@ CREATE TABLE IF NOT EXISTS `s_idstudents` (
 -- Table structure for table `time_table`
 --
 
+DROP TABLE IF EXISTS `time_table`;
 CREATE TABLE IF NOT EXISTS `time_table` (
   `TT_id` int(20) NOT NULL AUTO_INCREMENT,
   `class` varchar(10) NOT NULL,
