@@ -9,21 +9,42 @@ if(strlen($_SESSION['alogin'])=="")
     else{
 if(isset($_POST['submit']))
 {
-$studentname=$_POST['fullanme'];
-$roolid=$_POST['rollid']; 
-$studentemail=$_POST['emailid']; 
+$studentfirstname=$_POST['firstname'];
+$studentlastname=$_POST['lastname'];
+$studentfathername=$_POST['fathername'];
+$studentmothername=$_POST['mothername'];
+$studentaddress=$_POST['address'];
+$studentemailid=$_POST['stdudentemailid'];
+$parentemailid=$_POST['parentemailid'];
+$parentphonenumber=$_POST['parentphonenumber'];
+$admissiondate=NOW();
+/*$roolid=$_POST['rollid']; */
+/*$studentemail=$_POST['emailid']; */
 $gender=$_POST['gender']; 
-$classid=$_POST['class']; 
-$dob=$_POST['dob']; 
+$class=$_POST['class']; 
+$dob=$_POST['dob'];
+$board=$_POST['board']; 
+$batch=$_POST['batch'];
+$smsservice=$_POST['smsservice'];
 $status=1;
-$sql="INSERT INTO  tblstudents(StudentName,RollId,StudentEmail,Gender,ClassId,DOB,Status) VALUES(:studentname,:roolid,:studentemail,:gender,:classid,:dob,:status)";
+$sql="INSERT INTO  s_idstudents(s_first_name,s_last_name,father_name,mother_name,parent_mob,s_dob,admission_date,board,res_address,batch_year,class,s_email_id,p_email_id,sms_service,gender,Status) 
+      VALUES(:studentfirstname,:studentlastname,:studentfathername,:studentmothername,:parentphonenumber,:dob,:admissiondate,:board,:studentaddress,:batch,:class,:studentemailid,:parentemailid,:smsservice,:gender,:status)";
 $query = $dbh->prepare($sql);
-$query->bindParam(':studentname',$studentname,PDO::PARAM_STR);
-$query->bindParam(':roolid',$roolid,PDO::PARAM_STR);
-$query->bindParam(':studentemail',$studentemail,PDO::PARAM_STR);
-$query->bindParam(':gender',$gender,PDO::PARAM_STR);
-$query->bindParam(':classid',$classid,PDO::PARAM_STR);
+$query->bindParam(':studentmothername',$studentmothername,PDO::PARAM_STR);
+$query->bindParam(':studentlastname',$studentlastname,PDO::PARAM_STR);
+$query->bindParam(':studentfathername',$studentfathername,PDO::PARAM_STR);
+$query->bindParam(':studentmothername',$studentmothername,PDO::PARAM_STR);
+$query->bindParam(':parentphonenumber',$parentphonenumber,PDO::PARAM_STR);
 $query->bindParam(':dob',$dob,PDO::PARAM_STR);
+$query->bindParam(':admissiondate',$admissiondate,PDO::PARAM_STR);
+$query->bindParam(':board',$board,PDO::PARAM_STR);
+$query->bindParam(':studentaddress',$studentaddress,PDO::PARAM_STR);
+$query->bindParam(':batch',$batch,PDO::PARAM_STR);
+$query->bindParam(':class',$class,PDO::PARAM_STR);
+$query->bindParam(':studentemailid',$studentemailid,PDO::PARAM_STR);
+$query->bindParam(':parentemailid',$parentemailid,PDO::PARAM_STR);
+$query->bindParam(':smsservice',$smsservice,PDO::PARAM_STR);
+$query->bindParam(':gender',$gender,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
@@ -52,7 +73,10 @@ $error="Something went wrong. Please try again";
         <link rel="stylesheet" href="css/prism/prism.css" media="screen" >
         <link rel="stylesheet" href="css/select2/select2.min.css" >
         <link rel="stylesheet" href="css/main.css" media="screen" >
+        <link rel="stylesheet" href="css/bootstrap-datetimepicker/bootstrap-datetimepicker.css" media="screen">
+        <script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.js">  </script>
         <script src="js/modernizr/modernizr.min.js"></script>
+        <script src="js/moment/moment.js"></script>
     </head>
     <body class="top-navbar-fixed">
         <div class="main-wrapper">
@@ -114,27 +138,74 @@ else if($error){?>
                                                 <form class="form-horizontal" method="post">
 
 <div class="form-group">
-<label for="default" class="col-sm-2 control-label">Full Name</label>
+<label for="default" class="col-sm-2 control-label">First Name</label>
 <div class="col-sm-10">
-<input type="text" name="fullanme" class="form-control" id="fullanme" required="required" autocomplete="off">
+<input type="text" name="firstname" class="form-control" id="firstname" required="required" autocomplete="off">
 </div>
 </div>
 
 <div class="form-group">
-<label for="default" class="col-sm-2 control-label">Rool Id</label>
+<label for="default" class="col-sm-2 control-label">Last Name</label>
+<div class="col-sm-10">
+<input type="text" name="lastname" class="form-control" id="lastname" required="required" autocomplete="off">
+</div>
+</div>
+
+<div class="form-group">
+<label for="default" class="col-sm-2 control-label">Father name</label>
+<div class="col-sm-10">
+<input type="text" name="fathername" class="form-control" id="fathername" required="required" autocomplete="off">
+</div>
+</div>
+
+<div class="form-group">
+<label for="default" class="col-sm-2 control-label">Mother name</label>
+<div class="col-sm-10">
+<input type="text" name="mothername" class="form-control" id="mothername" required="required" autocomplete="off">
+</div>
+</div>
+
+<div class="form-group">
+<label for="default" class="col-sm-2 control-label">Address</label>
+<div class="col-sm-10">
+<input type="text" name="address" class="form-control" id="address" required="required" autocomplete="off">
+</div>
+</div>
+
+<!--<div class="form-group">
+<label for="default" class="col-sm-2 control-label">Roll Id</label>
 <div class="col-sm-10">
 <input type="text" name="rollid" class="form-control" id="rollid" maxlength="5" required="required" autocomplete="off">
 </div>
+</div>-->
+
+<div class="form-group">
+<label for="default" class="col-sm-2 control-label">Student Email id</label>
+<div class="col-sm-10">
+<input type="email" name="stdudentemailid" class="form-control" id="studentemailid" required="required" autocomplete="off">
+</div>
 </div>
 
 <div class="form-group">
-<label for="default" class="col-sm-2 control-label">Email id)</label>
+<label for="default" class="col-sm-2 control-label">Parent Email id</label>
+<div class="col-sm-10">
+<input type="email" name="parentemailid" class="form-control" id="parentemailid" required="required" autocomplete="off">
+</div>
+</div>
+
+<div class="form-group">
+<label for="default" class="col-sm-2 control-label">Parent Mob Number</label>
+<div class="col-sm-10">
+<input type="text" name="parentphonenumber" class="form-control" data-country="IN" id="parentphonenumber" required="required" autocomplete="off">
+</div>
+</div>
+
+<!--<div class="form-group">
+<label for="default" class="col-sm-2 control-label">Email id</label>
 <div class="col-sm-10">
 <input type="email" name="emailid" class="form-control" id="email" required="required" autocomplete="off">
 </div>
-</div>
-
-
+</div>-->
 
 <div class="form-group">
 <label for="default" class="col-sm-2 control-label">Gender</label>
@@ -143,60 +214,100 @@ else if($error){?>
 </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-                                                    <div class="form-group">
-                                                        <label for="default" class="col-sm-2 control-label">Class</label>
-                                                        <div class="col-sm-10">
- <select name="class" class="form-control" id="default" required="required">
-<option value="">Select Class</option>
-<?php $sql = "SELECT * from tblclasses";
-$query = $dbh->prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{   ?>
-<option value="<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->ClassName); ?>&nbsp; Section-<?php echo htmlentities($result->Section); ?></option>
-<?php }} ?>
- </select>
-                                                        </div>
-                                                    </div>
 <div class="form-group">
-                                                        <label for="date" class="col-sm-2 control-label">DOB</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="date"  name="dob" class="form-control" id="date">
-                                                        </div>
-                                                    </div>
-                                                    
+    <label for="default" class="col-sm-2 control-label">Class</label>
+    <div class="col-sm-10">
+        <select name="class" class="form-control" id="default" required="required">
+            <option value="">Select Class</option>
+            <?php $sql = "SELECT * from class";
+            $query = $dbh->prepare($sql);
+            $query->execute();
+            $results=$query->fetchAll(PDO::FETCH_OBJ);
+            if($query->rowCount() > 0)
+            {
+                foreach($results as $result)
+                {   ?>
+                    <option value="<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->class_name); ?>&bsp
+                    Section-<?php echo htmlentities($result->section); ?>
+                    </option>
+                    <?php 
+                }
+            } ?>
+        </select>
+    </div>
+</div>
 
-                                                    
-                                                    <div class="form-group">
-                                                        <div class="col-sm-offset-2 col-sm-10">
-                                                            <button type="submit" name="submit" class="btn btn-primary">Add</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col-md-12 -->
-                                </div>
-                    </div>
-                </div>
-                <!-- /.content-container -->
-            </div>
-            <!-- /.content-wrapper -->
+<div class="form-group">
+    <label for="date" class="col-sm-2 control-label">DOB</label>
+        <div class="col-sm-10">
+            <input type="date" name="dob" class="form-control" id="date">
         </div>
+</div>
+
+            <!--<div class="form-group">
+                <label for="default" class="col-sm-2 control-label">DOB</label>
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control"/>
+                        <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+        <script type="text/javascript">
+            $(function () {
+                $('.datetimepicker1').datetimepicker({
+                    format: 'yyyy-mm-dd hh:ii', 
+                    autoclose: true,
+                    todayBtn: true,
+                    pickerPosition: "bottom-left"
+                });
+            });
+        </script>
+</div>-->
+
+<!--<div class="form-group">
+    <label for="default" class="col-sm-2 control-label">Board</label>
+        <div class="col-sm-10">
+        <select name="board" class="form-control" id="sel1">
+        <option value="IPUC">IPUC</option>
+        <option value="IIPUC">IIPUC</option>>
+      </select>
+        </div>
+</div>-->
+
+<div class="form-group">
+    <label for="default" class="col-sm-2 control-label">Batch</label>
+        <div class="col-sm-10">
+        <select name="batch" class="form-control" id="sel1">
+        <option value="2017-2018">2017-2018</option>
+        <option value="2018-2019">2018-2019</option>>
+      </select>
+        </div>
+</div>
+
+<div class="form-group">
+    <label for="default" class="col-sm-2 control-label">SMS Service</label>
+        <div class="col-sm-10">
+        <label><input name="smsservice" id="smsservice" type="checkbox" value="1"></label>
+        </div>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" name="submit" class="btn btn-primary">Add</button>
+    </div>
+</div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-md-12 -->
+</div>
+</div>
+</div>
+<!-- /.content-container -->
+</div>
+<!-- /.content-wrapper -->
+</div>
         <!-- /.main-wrapper -->
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
         <script src="js/bootstrap/bootstrap.min.js"></script>

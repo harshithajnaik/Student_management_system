@@ -7,11 +7,11 @@ $_SESSION['alogin']='';
 }
 if(isset($_POST['login']))
 {
-$admin_name=$_POST['username'];
+$uname=$_POST['username'];
 $password=md5($_POST['password']);
 $sql ="SELECT admin_name,Password FROM admin WHERE admin_name=:admin_name and Password=:password";
 $query= $dbh -> prepare($sql);
-$query-> bindParam(':admin_name', $admin_name, PDO::PARAM_STR);
+$query-> bindParam(':admin_name', $uname, PDO::PARAM_STR);
 $query-> bindParam(':password', $password, PDO::PARAM_STR);
 $query-> execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -35,7 +35,7 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin Login</title>
+        <title>Login</title>
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" >
         <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" >
         <link rel="stylesheet" href="css/animate-css/animate.min.css" media="screen" >
@@ -43,13 +43,18 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
         <link rel="stylesheet" href="css/main.css" media="screen" >
         <script src="js/modernizr/modernizr.min.js"></script>
     </head>
-    <body class="">
+        <body class="top-navbar-fixed">
         <div class="main-wrapper">
+              <?php include('includes/indextopbar.php');?>
+            <div class="content-wrapper">
+                <div class="content-container">
+
+                    <?php include('includes/leftbarindex.php');?> 
 
             <div class="">
                 <div class="row">
- <h1 align="center">Silicon City Academy of Secondary Education</h1>
-                    <div class="col-lg-6 visible-lg-block">
+ <h1 align="center">Silicon City Student Management System</h1>
+                    <!--<div class="col-lg-6 visible-lg-block">
 
 <section class="section">
                             <div class="row mt-40">
@@ -66,7 +71,7 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                                                 <div class="panel-body p-20">
 
                                                     <div class="section-title">
-                                                        <p class="sub-title">Silicon City Academy of Secondary Education</p>
+                                                        <p class="sub-title">Student Result Management System</p>
                                                     </div>
 
                                                     <form class="form-horizontal" method="post">
@@ -84,18 +89,13 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                                                  
                                                 </div>
                                             </div>
-                                            <!-- /.panel -->
                                       
                                         </div>
-                                        <!-- /.col-md-11 -->
                                     </div>
-                                    <!-- /.row -->
                                 </div>
-                                <!-- /.col-md-12 -->
                             </div>
-                            <!-- /.row -->
                         </section>
-                    </div>
+                    </div>-->
                     <div class="col-lg-6">
                         <section class="section">
                             <div class="row mt-40">
@@ -106,14 +106,14 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                                             <div class="panel">
                                                 <div class="panel-heading">
                                                     <div class="panel-title text-center">
-                                                        <h4>Admin Login</h4>
+                                                        <h4>Login</h4>
                                                     </div>
                                                 </div>
                                                 <div class="panel-body p-20">
 
-                                                    <div class="section-title">
-                                                        <p class="sub-title">Silicon City Academy of Secondary Education </p>
-                                                    </div>
+                                                    <!--<div class="section-title">
+                                                        <p class="sub-title">Student Result Management System</p>
+                                                    </div>-->
 
                                                     <form class="form-horizontal" method="post">
                                                     	<div class="form-group">
@@ -136,14 +136,10 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                                                     		</div>
                                                     	</div>
                                                     </form>
-
-                                            
-
-                                                 
                                                 </div>
                                             </div>
                                             <!-- /.panel -->
-                                            <p class="text-muted text-center"><small>Copyright © SRMS</small></p>
+                                            <p class="text-muted text-center"><small>Copyright © Silicon City SMS</small></p>
                                         </div>
                                         <!-- /.col-md-11 -->
                                     </div>
@@ -153,7 +149,6 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                             </div>
                             <!-- /.row -->
                         </section>
-
                     </div>
                     <!-- /.col-md-6 -->
                 </div>
@@ -161,7 +156,13 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
             </div>
             <!-- /. -->
 
+            </div>
+                <!-- /.content-container -->
+            </div>
+            <!-- /.content-wrapper -->
+
         </div>
+        <!-- /.main-wrapper -->
         <!-- /.main-wrapper -->
 
         <!-- ========== COMMON JS FILES ========== -->
