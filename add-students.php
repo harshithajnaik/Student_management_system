@@ -10,25 +10,42 @@ if(strlen($_SESSION['alogin'])=="")
 if(isset($_POST['submit']))
 {
 $studentfirstname=$_POST['firstname'];
+echo "Student first name: " .$studentfirstname;
 $studentlastname=$_POST['lastname'];
+echo "Student last name: " .$studentlastname;
 $studentfathername=$_POST['fathername'];
+echo "Father name: " .$studentfathername;
 $studentmothername=$_POST['mothername'];
+echo "Mother name: " .$studentmothername;
 $studentaddress=$_POST['address'];
+echo "Student addr: " .$studentaddress;
 $studentemailid=$_POST['stdudentemailid'];
+echo "Student email: " .$studentemailid;
 $parentemailid=$_POST['parentemailid'];
+echo "Parent email: " .$parentemailid;
 $parentphonenumber=$_POST['parentphonenumber'];
-$admissiondate=NOW();
+echo "Parent ph no: " .$parentphonenumber;
+$dt=new DateTime();
+$admissiondate=$dt->format('Y-m-d H:i:s');
+echo "Admiss Date: " .$admissiondate;
 /*$roolid=$_POST['rollid']; */
 /*$studentemail=$_POST['emailid']; */
 $gender=$_POST['gender']; 
-$class=$_POST['class']; 
+echo "Gender: " .$gender;
+$class=$_POST['class'];
+echo "Class: " .$class; 
 $dob=$_POST['dob'];
+echo "DOB: " .$dob;
 $board=$_POST['board']; 
+echo "Board: " .$board;
 $batch=$_POST['batch'];
+echo "Batch: " .$batch;
 $smsservice=$_POST['smsservice'];
+echo "SMS Service: " .$smsservice;
 $status=1;
-$sql="INSERT INTO  s_idstudents(s_first_name,s_last_name,father_name,mother_name,parent_mob,s_dob,admission_date,board,res_address,batch_year,class,s_email_id,p_email_id,sms_service,gender,Status) 
-      VALUES(:studentfirstname,:studentlastname,:studentfathername,:studentmothername,:parentphonenumber,:dob,:admissiondate,:board,:studentaddress,:batch,:class,:studentemailid,:parentemailid,:smsservice,:gender,:status)";
+echo "Status: " .$status;
+$sql="INSERT INTO s_idstudents(s_first_name,s_last_name,father_name,mother_name,parent_mob,s_dob,admission_date,board,res_address,batch_year,class,s_email_id,p_email_id,sms_service,gender,status) 
+      VALUES('$studentfirstname','$studentlastname','$studentfathername','$studentmothername','$parentphonenumber','$dob','$admissiondate','$board','$studentaddress','$batch','$class','$studentemailid','$parentemailid','$smsservice','$gender','$status')";
 $query = $dbh->prepare($sql);
 $query->bindParam(':studentmothername',$studentmothername,PDO::PARAM_STR);
 $query->bindParam(':studentlastname',$studentlastname,PDO::PARAM_STR);
@@ -46,9 +63,9 @@ $query->bindParam(':parentemailid',$parentemailid,PDO::PARAM_STR);
 $query->bindParam(':smsservice',$smsservice,PDO::PARAM_STR);
 $query->bindParam(':gender',$gender,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
-$query->execute();
+//$query->execute();
 $lastInsertId = $dbh->lastInsertId();
-if($lastInsertId)
+if($query->execute())
 {
 $msg="Student info added successfully";
 }
@@ -227,7 +244,7 @@ else if($error){?>
             {
                 foreach($results as $result)
                 {   ?>
-                    <option value="<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->class_name); ?>&bsp
+                    <option value="<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->class_name); ?>&nbsp;
                     Section-<?php echo htmlentities($result->section); ?>
                     </option>
                     <?php 
@@ -264,7 +281,7 @@ else if($error){?>
         </script>
 </div>-->
 
-<!--<div class="form-group">
+<div class="form-group">
     <label for="default" class="col-sm-2 control-label">Board</label>
         <div class="col-sm-10">
         <select name="board" class="form-control" id="sel1">
@@ -272,7 +289,7 @@ else if($error){?>
         <option value="IIPUC">IIPUC</option>>
       </select>
         </div>
-</div>-->
+</div>
 
 <div class="form-group">
     <label for="default" class="col-sm-2 control-label">Batch</label>
