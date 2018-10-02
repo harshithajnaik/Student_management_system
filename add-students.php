@@ -21,12 +21,13 @@ $dt=new DateTime();
 $admissiondate=$dt->format('Y-m-d H:i:s');
 $gender=$_POST['gender']; 
 $class=$_POST['class'];
+$class_id=$_POST['class'];
 $dob=$_POST['dob'];
 $board=$_POST['board']; 
 $batch=$_POST['batch'];
 $smsservice=$_POST['smsservice'];
-$sql="INSERT INTO s_idstudents(s_first_name,s_last_name,father_name,mother_name,parent_mob,s_dob,admission_date,board,res_address,batch_year,class,s_email_id,p_email_id,sms_service,gender) 
-      VALUES('$studentfirstname','$studentlastname','$studentfathername','$studentmothername','$parentphonenumber','$dob','$admissiondate','$board','$studentaddress','$batch','$class','$studentemailid','$parentemailid','$smsservice','$gender')";
+$sql="INSERT INTO s_idstudents(s_first_name,s_last_name,father_name,mother_name,parent_mob,s_dob,admission_date,board,res_address,batch_year,class,s_email_id,p_email_id,sms_service,gender,class_id) 
+      VALUES('$studentfirstname','$studentlastname','$studentfathername','$studentmothername','$parentphonenumber','$dob','$admissiondate','$board','$studentaddress','$batch','$class','$studentemailid','$parentemailid','$smsservice','$gender','$class_id')";
 $query = $dbh->prepare($sql);
 
 //$query->execute();
