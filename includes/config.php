@@ -1,9 +1,9 @@
 <?php 
 // DB credentials.
-define('DB_HOST','localhost');
-define('DB_USER','root');
-define('DB_PASS','');
-define('DB_NAME','srms1');
+define('DB_HOST','siliconcitydb.cdc93webrjny.ap-south-1.rds.amazonaws.com');
+define('DB_USER','NateshM');
+define('DB_PASS','arizona_1234');
+define('DB_NAME','siliconcity_01');
 // Establish database connection.
 try
 {
