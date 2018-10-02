@@ -109,7 +109,7 @@ else if($error){?>
                                                         <tr>
                                                             <th>#</th>
                                                             <th>Student Name</th>
-                                                            <th>Roll Id</th>
+                                                            <th>Student Id</th>
                                                             <th>Class</th>
                                                             <th>Reg Date</th>
                                                             <th>Status</th>
@@ -120,7 +120,7 @@ else if($error){?>
                                                         <tr>
                                                           <th>#</th>
                                                             <th>Student Name</th>
-                                                            <th>Roll Id</th>
+                                                            <th>Student Id</th>
                                                             <th>Class</th>
                                                             <th>Reg Date</th>
                                                             <th>Status</th>
@@ -128,7 +128,7 @@ else if($error){?>
                                                         </tr>
                                                     </tfoot>
                                                     <tbody>
-<?php $sql = "SELECT tblstudents.StudentName,tblstudents.RollId,tblstudents.RegDate,tblstudents.StudentId,tblstudents.Status,tblclasses.ClassName,tblclasses.Section from tblstudents join tblclasses on tblclasses.id=tblstudents.ClassId";
+<?php $sql = "SELECT s_idstudents.s_first_name,s_idstudents.s_last_name,s_idstudents.s_id,s_idstudents.admission_date,class.class_name,class.section from s_idstudents join class on class.id=s_idstudents.class_id";
 $query = $dbh->prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -139,10 +139,10 @@ foreach($results as $result)
 {   ?>
 <tr>
  <td><?php echo htmlentities($cnt);?></td>
-                                                            <td><?php echo htmlentities($result->StudentName);?></td>
-                                                            <td><?php echo htmlentities($result->RollId);?></td>
-                                                            <td><?php echo htmlentities($result->ClassName);?>(<?php echo htmlentities($result->Section);?>)</td>
-                                                            <td><?php echo htmlentities($result->RegDate);?></td>
+                                                            <td><?php echo htmlentities($result->s_first_name); ?>&nbsp; <?php echo htmlentities($result->s_last_name)?></td>
+                                                            <td><?php echo htmlentities($result->s_id);?></td>
+                                                            <td><?php echo htmlentities($result->class_name);?>&nbsp;  Section-<?php echo htmlentities($result->section);?></td>
+                                                            <td><?php echo htmlentities($result->admission_date);?></td>
                                                              <td><?php if($result->Status==1){
 echo htmlentities('Active');
 }
@@ -151,7 +151,7 @@ else{
 }
                                                                 ?></td>
 <td>
-<a href="edit-student.php?stid=<?php echo htmlentities($result->StudentId);?>"><i class="fa fa-edit" title="Edit Record"></i> </a> 
+<a href="edit-student.php?stid=<?php echo htmlentities($result->s_id);?>"><i class="fa fa-edit" title="Edit Record"></i> </a> 
 
 </td>
 </tr>
@@ -227,4 +227,3 @@ else{
     </body>
 </html>
 <?php } ?>
-
