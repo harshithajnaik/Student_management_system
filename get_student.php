@@ -14,18 +14,21 @@ if(!empty($_POST["classid"]))
  while($row=$stmt->fetch(PDO::FETCH_ASSOC))
  {
   ?>
-  <option value="<?php echo htmlentities($row['s_id']); ?>"><?php echo htmlentities($row['s_first_name']&nbsp echo htmlentities($row['s_last_name']); ?> ); ?></option>
+  <option value="<?php echo htmlentities($row['s_id']); ?>">
+  <?php echo htmlentities($row['s_first_name']); ?>&nbsp; <?php echo htmlentities($row['s_last_name']); ?>
+  </option>
   <?php
  }
-}
+}?>
 
 }
 // Code for Subjects
+<?php
 if(!empty($_POST["classid1"])) 
 {
  $cid1=intval($_POST['classid1']);
- if(!is_numeric($cid1)){
- 
+ if(!is_numeric($cid1))
+ {
   echo htmlentities("invalid Class");exit;
  }
  else{
@@ -37,11 +40,10 @@ if(!empty($_POST["classid1"]))
  {?>
   <p> <?php echo htmlentities($row['SubjectName']); ?><input type="text"  name="marks[]" value="" class="form-control" required="" placeholder="Enter marks out of 100" autocomplete="off"></p>
   
-<?php  }
+<?php
 }
 }
-
-
+}
 ?>
 
 <?php
@@ -66,9 +68,5 @@ if($query -> rowCount() > 0)
 echo "<span style='color:red'> Result Already Declare .</span>";
  echo "<script>$('#submit').prop('disabled',true);</script>";
  ?></p>
-<?php }
-
-
-  }?>
-
+<?php } } ?>
 
