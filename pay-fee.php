@@ -215,13 +215,7 @@ else if($error){?>
                                                         </div>
                                                     </div>
                                                     
-<div class="form-group">
-                                                        <label for="date" class="col-sm-2 control-label">Subjects</label>
-                                                        <div class="col-sm-10">
-                                                    <div  id="subject">
-                                                    </div>
-                                                        </div>
-                                                    </div>
+
 
 
                                                     
@@ -266,4 +260,3 @@ else if($error){?>
     </body>
 </html>
 <?PHP } ?>
- 
